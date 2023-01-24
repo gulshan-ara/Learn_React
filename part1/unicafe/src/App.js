@@ -6,9 +6,31 @@ const Button = (props) => {
   )
 }
 
-const Statistics = (props) => {
+const StatisticLine = (props) => {
   return (
     <p>{props.name} {props.value}</p>
+  )
+}
+
+const Statistics = (props) => {
+  if(props.all !== 0){
+    return(
+      <div>
+        <h1>Statistics</h1>
+        <StatisticLine name="good" value={props.good}/>
+        <StatisticLine name="neutral" value={props.neutral}/>
+        <StatisticLine name="bad" value={props.bad}/>
+        <StatisticLine name="all" value={props.all}/>
+        <StatisticLine name="average" value={props.impression/props.all}/>
+        <StatisticLine name="positive" value={props.good * 100/props.all}/>
+      </div>
+    )
+  }
+  return(
+    <div>
+      <h1>Statistics</h1>
+      <p>No feedback given.</p>
+    </div>
   )
 }
 
@@ -34,33 +56,19 @@ const App = () => {
     setBad(bad + 1);
   }
  
-  if(all !== 0){
-    return (
-      <div>
-        <h1>give feedback</h1>
-        <Button name="good" handleClick={handleGoodClick}/>
-        <Button name="neutral" handleClick={handleNeutralClick}/>
-        <Button name="bad" handleClick={handleBadClick}/>
-
-        <h1>statistics</h1>
-        <Statistics name="good" value={good}/>
-        <Statistics name="neutral" value={neutral}/>
-        <Statistics name="bad" value={bad}/>
-        <Statistics name="all" value={all}/>
-        <Statistics name="average" value={impression/all}/>
-        <Statistics name="positive" value={good/all}/>
-      </div>
-    )
-  }
   return (
     <div>
       <h1>give feedback</h1>
       <Button name="good" handleClick={handleGoodClick}/>
       <Button name="neutral" handleClick={handleNeutralClick}/>
       <Button name="bad" handleClick={handleBadClick}/>
-
-      <h1>statistics</h1>
-      <p>No feedback given</p>
+      <Statistics
+        good={good}
+        neutral={neutral}
+        bad={bad}
+        all={all}
+        impression={impression}
+      />
     </div>
   )
 }
