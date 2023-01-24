@@ -33,7 +33,25 @@ const App = () => {
     console.log('Bad button Clicked!');
     setBad(bad + 1);
   }
+ 
+  if(all !== 0){
+    return (
+      <div>
+        <h1>give feedback</h1>
+        <Button name="good" handleClick={handleGoodClick}/>
+        <Button name="neutral" handleClick={handleNeutralClick}/>
+        <Button name="bad" handleClick={handleBadClick}/>
 
+        <h1>statistics</h1>
+        <Statistics name="good" value={good}/>
+        <Statistics name="neutral" value={neutral}/>
+        <Statistics name="bad" value={bad}/>
+        <Statistics name="all" value={all}/>
+        <Statistics name="average" value={impression/all}/>
+        <Statistics name="positive" value={good/all}/>
+      </div>
+    )
+  }
   return (
     <div>
       <h1>give feedback</h1>
@@ -42,12 +60,7 @@ const App = () => {
       <Button name="bad" handleClick={handleBadClick}/>
 
       <h1>statistics</h1>
-      <Statistics name="good" value={good}/>
-      <Statistics name="neutral" value={neutral}/>
-      <Statistics name="bad" value={bad}/>
-      <Statistics name="all" value={all}/>
-      <Statistics name="average" value={impression/all}/>
-      <Statistics name="positive" value={good/all}/>
+      <p>No feedback given</p>
     </div>
   )
 }
