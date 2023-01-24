@@ -19,7 +19,7 @@ const Statistics = (props) => {
   if(props.all !== 0){
     return(
       <div>
-        <h1>Statistics</h1>
+        <h1>statistics</h1>
         <table>
           <StatisticLine name="good" value={props.good}/>
           <StatisticLine name="neutral" value={props.neutral}/>
@@ -31,9 +31,10 @@ const Statistics = (props) => {
       </div>
     )
   }
+  
   return(
     <div>
-      <h1>Statistics</h1>
+      <h1>statistics</h1>
       <p>No feedback given.</p>
     </div>
   )
