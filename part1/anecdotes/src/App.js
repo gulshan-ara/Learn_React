@@ -14,13 +14,19 @@ const App = () => {
    
   const [selected, setSelected] = useState(0)
   const [vote, setVotes] = useState({ 0: 0, 1: 0, 2: 0, 3: 0, 4:0, 5:0, 6:0, 7:0})
-
+  
   const handleVote = () => {
     let copy = {...vote}
     copy[selected] = copy[selected] + 1;
     setVotes(copy);
   }
 
+  const maxVote = (obj) => {
+  let max = Math.max(...Object.values(obj))
+  return Object.keys(obj).filter(key => obj[key]==max)
+  }
+  console.log(maxVote(vote));
+  
   const randomNumberInRange = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -31,11 +37,16 @@ const App = () => {
   
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <p>has {vote[selected]} votes</p>
       <div>
         <button onClick={handleVote}>votes</button>
         <button onClick={handleNextClick}>next anecdotes</button>
+      </div>
+      <div>
+        <h1>Anecdote with most votes</h1>
+        {anecdotes[maxVote(vote)]}
       </div>
     </div>
   )
